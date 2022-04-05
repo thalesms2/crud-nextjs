@@ -31,4 +31,6 @@ yarn dev
 
 Abra [http://localhost:3000](http://localhost:3000) com seu navegador de internet de escolha para ver o resultado.
 
+>Para uso do banco de dados é necessário a configuração do Firebase@8.10.0
+
 [⬆ Voltar ao topo](#nome-do-projeto)<br>
