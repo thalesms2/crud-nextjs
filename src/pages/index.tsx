@@ -1,15 +1,21 @@
 import Layout from '../components/Layout'
 import Table from '../components/Table'
-import Client from '../core/Client'
+import Form from '../components/Form'
+import Button from '../components/Button'
+import useClient from '../hooks/useClient'
 
 export default function Home() {
-
-  const clients = [
-    new Client('Ana', 34, '1'),
-    new Client('Bia', 35, '2'),
-    new Client('Carlos', 17, '3'),
-    new Client('Pedro', 22, '4'),
-  ]
+  
+  const { 
+    clientSaved,
+    clientExcluded,
+    newClient,
+    clientSelected,
+    tableIsVisible,
+    showTable,
+    client,
+    clients,
+  } = useClient()
   
   return (
     <div className={
@@ -18,7 +24,23 @@ export default function Home() {
       text-white`
       }>
       <Layout title="Cadastro Simples">
-        <Table clients={ clients }></Table>
+        {tableIsVisible ? (
+          <>
+            <div className="flex justify-end">
+              <Button color="green" className="mb-4" 
+                onClick={newClient}>
+                Novo Cliente
+              </Button>
+            </div>
+            <Table clients={ clients } clientSelected={ clientSelected } clientExcluded={ clientExcluded }></Table>
+          </>
+        ): (
+          <Form 
+            client={client}
+            clientHasChanged={clientSaved}
+            canceled={showTable}
+          />
+        )}
       </Layout>
     </div>
   )
